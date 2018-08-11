@@ -7,7 +7,7 @@ server:
 
 #tomcat最大线程数，默认为200
   tomcat:
-    max-threads: 100
+    max-threads: 200
 #tomcat的URI编码
     uri-encoding: UTF-8
 ##数据库连接信息
@@ -22,7 +22,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 # 下面为连接池的补充设置，应用到上面所有数据源中
 # 初始化大小，最小，最大\
-    initialSize: 5
+    initialSize: 1
     minIdle: 5
     maxActive: 20
 # 配置获取连接等待超时的时间
@@ -46,30 +46,13 @@ spring:
 #spring.datasource.useGlobalDataSourceStat=true
 ###############以上为配置druid添加的配置########################################
 
-# 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
-# 如果是放在resource目录 classpath:/mapper/*Mapper.xml
-mybatis-plus:
-  mapper-locations: classpath:/mapper/*.xml
-#实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.helloboot.domain
-
-#主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
-  global-config:
-      id-type: 0
-      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
-      field-strategy: 2
-      #驼峰下划线转换
-      db-column-underline: false
-      #刷新mapper 调试神器
-      refresh-mapper: true
-      #数据库大写下划线转换
-      #capital-mode: true
-      #逻辑删除配置（下面3个配置）
-      sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
-      logic-delete-value: 1
-      logic-not-delete-value: 0
-  configuration:
-    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
-    map-underscore-to-camel-case: false
-    cache-enabled: false
-
+jpa:
+    # 配置 DBMS 类型
+    database: MYSQL
+    # 配置是否将执行的 SQL 输出到日志
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          # 配置开启自动更新表结构
+          auto: update
