@@ -7,9 +7,9 @@ import java.lang.annotation.*;
  * @author lujianhao
  * @date 2018/11/30
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
+//@Target(ElementType.METHOD)
+//@Retention(RetentionPolicy.RUNTIME)
+//@Documented
 public @interface SerializabledWithLock {
     /**
      * 锁的key(支持SpEL,动态参数解析)

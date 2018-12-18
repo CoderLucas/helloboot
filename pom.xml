@@ -84,12 +84,47 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+
+		<dependency>
 			<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
 			<!-- 最新 2.4 -->
 			<!-- The Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more. -->
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.0.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.12.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.17</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+
+		<dependency>
+			<!-- http://mvnrepository.com/artifact/com.belerweb/pinyin4j/2.5.0 -->
+			<!-- 现 2.5.0 最新 2.5.1 -->
+			<!-- Support Chinese character (both Simplified and Tranditional) to most popular Pinyin systems, including Hanyu Pinyin, Tongyong Pinyin, Wade-Giles, MPS2, Yale and Gwoyeu Romatzyh. Support multiple pronounciations and customized output. -->
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
 		</dependency>
 
 	</dependencies>

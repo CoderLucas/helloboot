@@ -33,7 +33,7 @@ public class AESUtil {
      * @return byte[] 密钥
      * @throws Exception
      */
-    public static byte[] initSecretKey() {
+    private static byte[] initSecretKey() {
         //返回生成指定算法的秘密密钥的 KeyGenerator 对象
         KeyGenerator kg = null;
         try {

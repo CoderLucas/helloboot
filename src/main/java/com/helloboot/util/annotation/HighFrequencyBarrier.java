@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
  * @author lujianhao
  * @date 2018/11/30
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
+//@Target(ElementType.METHOD)
+//@Retention(RetentionPolicy.RUNTIME)
+//@Documented
 public @interface HighFrequencyBarrier {
     String[] keys() default {};
     int keyDeep() default 1;

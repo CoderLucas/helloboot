@@ -8,9 +8,9 @@ import java.lang.annotation.*;
  * @author lujianhao
  * @date 2018/11/30
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
+//@Target(ElementType.METHOD)
+//@Retention(RetentionPolicy.RUNTIME)
+//@Documented
 public @interface Retry {
     /**
      * 重试次数

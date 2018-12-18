@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
  * @author lujianhao
  * @date 2018/11/30
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class RetryAspect {
     @Pointcut("@annotation(retry)")
     public void pointcut(Retry retry) {
