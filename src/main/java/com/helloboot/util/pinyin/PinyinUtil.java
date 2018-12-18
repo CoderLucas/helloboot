@@ -8,9 +8,11 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 /**
+ * 拼音工具类 pinyin4j
  * @author lujianhao
  * @date 2018/12/17
  */
+/**check*/
 public class PinyinUtil {
     /**
      * 将字符串中的中文转化为拼音,其他字符不变.

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author lujianhao
  * @date 2018/12/6
  */
+/**check*/
 public class CharacterUtil {
     /**
      * 判断一个字符是否emoji表情字符
@@ -22,20 +23,23 @@ public class CharacterUtil {
 
     /**
      * 限定非 emoji 的范围判断是否是 emoji 表情
-     * @param ch
+     *
+     * @param ch 待检测的字符
      * @return
      */
     public static boolean isNotEmoji(char ch) {
-        boolean  isLatin = ch >= 0x0020 && ch <= 0x007F;   // 基本拉丁文（字母、数字、基本符号）
+        boolean isLatin = ch >= 0x0020 && ch <= 0x007F;   // 基本拉丁文（字母、数字、基本符号）
         boolean isChinese = ch >= 0x4E00 && ch <= 0x9FCB;  // 基本汉字
-        return  isChinese || isLatin;
+        return isChinese || isLatin;
     }
 
-
     /**
-     * 清除一个字符串中的emoji表情字符
+     * 判断一个字符串中是否包含emoji表情字符
+     *
+     * @param s 待检测的字符串
+     * @return
      */
-    public static boolean containsEmoji(String s) {
+    public static boolean containEmoji(String s) {
         if (StringUtils.isEmpty(s)) {
             return false;
         }
@@ -50,6 +54,9 @@ public class CharacterUtil {
 
     /**
      * 清除一个字符串中的emoji表情字符
+     *
+     * @param s 待检测的字符串
+     * @return
      */
     public static String cleanEmoji(String s) {
         if (StringUtils.isEmpty(s)) {

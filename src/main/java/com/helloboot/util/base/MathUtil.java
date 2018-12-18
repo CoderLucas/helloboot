@@ -10,19 +10,19 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author lujianhao
  * @date 2018/12/6
  */
-public class MathUtils {
-
-    public static final String ALLCHAR
+/**check*/
+public class MathUtil {
+    private static final String ALLCHAR
             = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static final String LETTERCHAR
+    private static final String LETTERCHAR
             = "abcdefghijkllmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static final String NUMBERCHAR
+    private static final String NUMBERCHAR
             = "0123456789";
     /**
      * 获取当前线程的Random
      * @return
      */
-    public static ThreadLocalRandom getRandom() {
+    private static ThreadLocalRandom getRandom() {
         return ThreadLocalRandom.current();
     }
 
@@ -32,7 +32,7 @@ public class MathUtils {
      * @param max
      * @return
      */
-    public static int integer(int min, int max) {
+    public static int random(int min, int max) {
         return getRandom().nextInt(max + 1 - min) + min;
     }
 
@@ -47,10 +47,10 @@ public class MathUtils {
         Set<Integer> randoms = new HashSet<>();
         int len = max - min + 1;
         if (max < min || count > len) {
-            return randoms;
+            throw new RuntimeException("产生随机数失败，请检查数字范围或生成数量！");
         }
         while (randoms.size() < count) {
-            randoms.add(integer(min, max));
+            randoms.add(random(min, max));
         }
         return randoms;
     }
@@ -75,7 +75,7 @@ public class MathUtils {
      * @param length 随机字符串长度
      * @return 随机字符串
      */
-    public static String string(int length) {
+    public static String numberAndString(int length) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {
             sb.append(ALLCHAR.charAt(getRandom().nextInt(ALLCHAR.length())));
@@ -89,10 +89,10 @@ public class MathUtils {
      * @param length 随机字符串长度
      * @return 随机字符串
      */
-    public static String mixString(int length) {
+    public static String string(int length) {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {
-            sb.append(ALLCHAR.charAt(getRandom().nextInt(LETTERCHAR.length())));
+            sb.append(LETTERCHAR.charAt(getRandom().nextInt(LETTERCHAR.length())));
         }
         return sb.toString();
     }
@@ -104,7 +104,7 @@ public class MathUtils {
      * @return 随机字符串
      */
     public static String lowerString(int length) {
-        return mixString(length).toLowerCase();
+        return string(length).toLowerCase();
     }
 
     /**
@@ -114,7 +114,7 @@ public class MathUtils {
      * @return 随机字符串
      */
     public static String upperString(int length) {
-        return mixString(length).toUpperCase();
+        return string(length).toUpperCase();
     }
 
     /**
@@ -177,7 +177,7 @@ public class MathUtils {
      * @return T
      */
     public static <T> T randomItem(T[] param) {
-        int index = integer(0, param.length);
+        int index = random(0, param.length);
         return param[index];
     }
 
@@ -198,20 +198,9 @@ public class MathUtils {
     /**
      * 返回一个UUID.
      *
-     * @return 小写的UUID
+     * @return 大写的UUID
      */
     public static String uuid() {
-        return UUID.randomUUID().toString().replaceAll("_", "");
-    }
-
-    /**
-     * 获取两个数的中间数，包含min和max.
-     *
-     * @param min 最小
-     * @param max 最大
-     * @return 中间数
-     */
-    public static int getMidNum(int min, int max) {
-        return min + getRandom().nextInt(max - min + 1);
+        return UUID.randomUUID().toString().toUpperCase();
     }
 }

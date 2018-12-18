@@ -10,14 +10,19 @@ import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
 /**
+ * 时间工具类
  * Created by lujianhao on 2018/3/5.
+ */
+
+/**
+ * check
  */
 public class LocalDateTimeUtil {
     public static final String DATE_FORMAT_PATTERN_INT = "yyyyMMdd";
     public static final String DATE_FORMAT_PATTERN_SHORT_M = "yyyy-MM";
     public static final String DATE_FORMAT_PATTERN_SHORT = "yyyy-MM-dd";
     public static final String DATE_FORMAT_PATTERN_DEFAULT = "yyyy-MM-dd HH:mm:ss";
-    public static final String DATE_FORMAT_PATTERN_UTC = "yyyy-MM-dd'T'HH:mm:ss'Z'";                  // UTC 格式
+    public static final String DATE_FORMAT_PATTERN_UTC = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static final String DATE_FORMAT_PATTERN_MONTH_INT = "yyyyMM";
     public static final String DATE_FORMAT_PATTERN_HOUR_INT = "yyyyMMddHH";
     public static final String DATE_FORMAT_PATTERN_MINUTE_INT = "yyyyMMddHHmm";
@@ -75,13 +80,23 @@ public class LocalDateTimeUtil {
     }
 
     /**
+     * 获取指定时间的默认格式.
+     *
+     * @param time
+     * @return java.lang.String
+     */
+    public static String formatTime(LocalDateTime time) {
+        return time.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN_DEFAULT));
+    }
+
+    /**
      * 获取当前时间的指定格式.
      *
      * @param pattern
      * @return java.lang.String
      */
     public static String formatNow(String pattern) {
-        return  formatTime(LocalDateTime.now(), pattern);
+        return formatTime(LocalDateTime.now(), pattern);
     }
 
     /**
@@ -129,6 +144,7 @@ public class LocalDateTimeUtil {
 
     /**
      * 获取一天的开始时间
+     *
      * @param dateTime
      * @return java.time.LocalDateTime
      */
@@ -141,6 +157,7 @@ public class LocalDateTimeUtil {
 
     /**
      * 获取一天的结束时间
+     *
      * @param dateTime
      * @return java.time.LocalDateTime
      */
@@ -149,9 +166,5 @@ public class LocalDateTimeUtil {
                 .withMinute(59)
                 .withSecond(59)
                 .withNano(999999999);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDateTimeUtil.getSecondsByTime(LocalDateTime.now()));
     }
 }
