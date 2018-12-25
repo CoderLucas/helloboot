@@ -1,5 +1,7 @@
 package com.helloboot.util.base;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
