@@ -16,10 +16,10 @@ public final class PinyinUtils {
     }
 
     /**
-     * 获取汉字串拼音首字母，英文字符不变.
+     * Return the first letter of pinyin
      *
      * @param input the chinese string
-     * @return 汉语拼音首字母
+     * @return the first letter of pinyin
      */
     public static String getPinyinFirstLetters(final String input) {
         if (input == null || input.length() == 0) {
@@ -34,12 +34,15 @@ public final class PinyinUtils {
     }
 
     /**
-     * 将字符串中的中文转化为拼音,其他字符不变.
+     * Return the pinyin
      *
-     * @param input the chinese string
-     * @return 汉语拼音首字母
+     * @param input the chinese characters
+     * @return the pinyin
      */
     public static String getPinyin(final String input) {
+        if (input == null || input.length() == 0) {
+            return "";
+        }
         char[] arr = input.trim().toCharArray();
         StringBuilder output = new StringBuilder();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
