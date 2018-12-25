@@ -9,7 +9,13 @@ import java.io.IOException;
  * @author lujianhao
  * @date 2018/12/5
  */
-public class IoUtil {
+public final class FileUtil {
+    private static int  BUFFER_SIZE = 1024 * 10;
+
+    private FileUtil() {
+        throw new UnsupportedOperationException("You can't instantiate FileUtil...");
+    }
+
     public static void writeToFile(byte[] bytes, File output) {
         if (bytes != null && bytes.length > 0 && output != null) {
             if (!output.getParentFile().exists()) {
@@ -24,7 +30,7 @@ public class IoUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                CloseUtil.closeQuiet(os);
+                CloseUtils.closeQuietly(os);
             }
         }
     }

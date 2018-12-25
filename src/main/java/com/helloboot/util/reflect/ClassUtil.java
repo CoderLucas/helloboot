@@ -1,6 +1,7 @@
 package com.helloboot.util.reflect;
 
-import com.helloboot.util.file.FileUtil;
+
+import com.helloboot.util.file.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -273,7 +274,7 @@ public class ClassUtil {
      */
     public static List<String> getClassNameByFile(String filePath, boolean childPackage) {
         List<String> myClassName = new ArrayList<>();
-        List<File> files = FileUtil.listFile(filePath, childPackage);
+        List<File> files = FileUtils.listFilesInDir(filePath, childPackage);
         for (File file : files) {
             if (file.getName().endsWith(".class")) {
                 String childFilePath = file.getPath();

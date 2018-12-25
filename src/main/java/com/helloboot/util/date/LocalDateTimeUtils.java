@@ -14,10 +14,7 @@ import java.util.Date;
  * Created by lujianhao on 2018/3/5.
  */
 
-/**
- * check
- */
-public class LocalDateTimeUtil {
+public class LocalDateTimeUtils {
     public static final String DATE_FORMAT_PATTERN_INT = "yyyyMMdd";
     public static final String DATE_FORMAT_PATTERN_SHORT_M = "yyyy-MM";
     public static final String DATE_FORMAT_PATTERN_SHORT = "yyyy-MM-dd";

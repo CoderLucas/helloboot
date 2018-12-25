@@ -1,7 +1,7 @@
 package com.helloboot.util.http;
 
 
-import com.helloboot.util.io.IoUtil;
+import com.helloboot.util.io.FileUtil;
 import com.helloboot.util.web.WebUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -500,7 +500,7 @@ public final class HttpClientUtil {
     public static File fmt2File(HttpResponse resp, File outFile) {
         try {
             byte[] byteArray = EntityUtils.toByteArray(resp.getEntity());
-            IoUtil.writeToFile(byteArray, outFile);
+            FileUtil.writeToFile(byteArray, outFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

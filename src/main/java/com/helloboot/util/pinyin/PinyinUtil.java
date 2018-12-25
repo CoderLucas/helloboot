@@ -20,7 +20,7 @@ public class PinyinUtil {
      * @param inputString
      * @return
      */
-    public static String getPingYin(String inputString) {
+    public static String getPinYin(String inputString) {
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);

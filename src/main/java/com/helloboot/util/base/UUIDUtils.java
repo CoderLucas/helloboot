@@ -1,4 +1,4 @@
-package com.helloboot.util.encrypt;
+package com.helloboot.util.base;
 
 import java.util.UUID;
 
@@ -6,7 +6,8 @@ import java.util.UUID;
  * @author lujianhao
  * @date 2018/12/5
  */
-public class UUIDUtil {
+/**check*/
+public class UUIDUtils {
     /**
      * 获取随机 UUID，默认带连字符 「-」
      *
@@ -26,6 +27,14 @@ public class UUIDUtil {
         if (useHyphen) {
             return UUID.randomUUID().toString();
         }
-        return UUID.randomUUID().toString().replace("-", "");
+        return UUID.randomUUID()
+                .toString()
+                .replace("-", "")
+                .toUpperCase();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(UUIDUtils.get());
+        System.out.println(UUID.randomUUID());
     }
 }
