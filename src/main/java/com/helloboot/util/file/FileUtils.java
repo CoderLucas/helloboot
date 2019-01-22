@@ -861,7 +861,9 @@ public class FileUtils {
      * @return the time that the file was last modified
      */
     public static long getFileLastModified(final File file) {
-        if (file == null) return -1;
+        if (file == null) {
+            return -1;
+        }
         return file.lastModified();
     }
 
@@ -1174,7 +1176,9 @@ public class FileUtils {
      * @return the name of file
      */
     public static String getFileName(final File file) {
-        if (file == null) return "";
+        if (file == null) {
+            return "";
+        }
         return getFileName(file.getAbsolutePath());
     }
 
@@ -1185,7 +1189,9 @@ public class FileUtils {
      * @return the name of file
      */
     public static String getFileName(final String filePath) {
-        if (isSpace(filePath)) return "";
+        if (isSpace(filePath)) {
+            return "";
+        }
         int lastSep = filePath.lastIndexOf(File.separator);
         return lastSep == -1 ? filePath : filePath.substring(lastSep + 1);
     }
@@ -1197,7 +1203,9 @@ public class FileUtils {
      * @return the name of file without extension
      */
     public static String getFileNameNoExtension(final File file) {
-        if (file == null) return "";
+        if (file == null) {
+            return "";
+        }
         return getFileNameNoExtension(file.getPath());
     }
 
@@ -1208,7 +1216,9 @@ public class FileUtils {
      * @return the name of file without extension
      */
     public static String getFileNameNoExtension(final String filePath) {
-        if (isSpace(filePath)) return "";
+        if (isSpace(filePath)) {
+            return "";
+        }
         int lastPoi = filePath.lastIndexOf('.');
         int lastSep = filePath.lastIndexOf(File.separator);
         if (lastSep == -1) {
