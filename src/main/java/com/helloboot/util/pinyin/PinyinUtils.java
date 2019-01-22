@@ -18,43 +18,75 @@ public final class PinyinUtils {
     /**
      * Return the first letter of pinyin
      *
-     * @param input the chinese string
+     * @param input the chinese characters
      * @return the first letter of pinyin
      */
-    public static String getPinyinFirstLetters(final String input) {
+    public static String getPinyinFirstLetters(final CharSequence input) {
+        return getPinyinFirstLetters(input, "", false);
+    }
+
+    /**
+     * Return the first letter of pinyin
+     *
+     * @param input       the chinese characters
+     * @param separator   the separator
+     * @param onlyChinese keep only chinese characters
+     * @return the first letter of pinyin
+     */
+    public static String getPinyinFirstLetters(final CharSequence input, final CharSequence separator, boolean onlyChinese) {
         if (input == null || input.length() == 0) {
             return "";
         }
-        int len = input.length();
         StringBuilder output = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            output.append(getPinyin(String.valueOf(input.charAt(i))).substring(0,1));
+        for (int i = 0; i < input.length(); i++) {
+            char anArr = input.charAt(i);
+            if (anArr >= 0x4E00 && anArr <= 0x9FA5) {
+                output.append(getPinyin(String.valueOf(anArr)).substring(0, 1))
+                        .append(separator);
+            } else if (!onlyChinese) {
+                output.append(anArr)
+                        .append(separator);
+            }
         }
         return output.toString();
     }
 
     /**
-     * Return the pinyin
+     * Return the pinyin of the chinese characters
      *
      * @param input the chinese characters
      * @return the pinyin
      */
-    public static String getPinyin(final String input) {
+    public static String getPinyin(final CharSequence input) {
+        return getPinyin(input, "", false);
+    }
+
+    /**
+     * Return the pinyin of the chinese characters
+     *
+     * @param input       the chinese characters
+     * @param separator   the separator
+     * @param onlyChinese keep only chinese characters
+     * @return the pinyin
+     */
+    public static String getPinyin(final CharSequence input, final CharSequence separator, boolean onlyChinese) {
         if (input == null || input.length() == 0) {
             return "";
         }
-        char[] arr = input.trim().toCharArray();
         StringBuilder output = new StringBuilder();
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
         try {
-            for (char anArr : arr) {
-                if (Character.toString(anArr).matches("^[\\u4e00-\\u9fa5]+$")) {
+            for (int i = 0; i < input.length(); i++) {
+                char anArr = input.charAt(i);
+                if (anArr >= 0x4E00 && anArr <= 0x9FA5) {
                     String[] temp = PinyinHelper.toHanyuPinyinStringArray(anArr, format);
-                    output.append(temp[0]);
-                } else {
-                    output.append(Character.toString(anArr));
+                    output.append(temp[0])
+                            .append(separator);
+                } else if (!onlyChinese) {
+                    output.append(Character.toString(anArr))
+                            .append(separator);
                 }
             }
         } catch (BadHanyuPinyinOutputFormatCombination e) {
