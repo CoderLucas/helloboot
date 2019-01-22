@@ -1,6 +1,6 @@
 package com.helloboot;
 
-import com.helloboot.util.subutil.CoordinateUtils;
+import com.helloboot.util.location.CoordinateUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class CoordinateUtilsTest {
     @Test
     public void gcj2BD09() throws Exception {
         double[] BD09 = CoordinateUtils.gcj02ToBd09(locationGCJ02[0], locationGCJ02[1]);
-        double distance = distance(locationBD09[0], locationBD09[1], BD09[0], BD09[1]);
+        double distance = CoordinateUtils.distance(locationBD09[0], locationBD09[1], BD09[0], BD09[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -27,7 +27,7 @@ public class CoordinateUtilsTest {
     @Test
     public void gcj2WGS() {
         double[] WGS84 = CoordinateUtils.gcj02ToWGS84(locationGCJ02[0], locationGCJ02[1]);
-        double distance = distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
+        double distance = CoordinateUtils.distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -35,7 +35,7 @@ public class CoordinateUtilsTest {
     @Test
     public void bd092GCJ() {
         double[] GCJ02 = CoordinateUtils.bd09ToGcj02(locationBD09[0], locationBD09[1]);
-        double distance = distance(locationGCJ02[0], locationGCJ02[1], GCJ02[0], GCJ02[1]);
+        double distance = CoordinateUtils.distance(locationGCJ02[0], locationGCJ02[1], GCJ02[0], GCJ02[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -43,7 +43,7 @@ public class CoordinateUtilsTest {
     @Test
     public void bd092WGS() {
         double[] WGS84 = CoordinateUtils.bd09ToWGS84(locationBD09[0], locationBD09[1]);
-        double distance = distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
+        double distance = CoordinateUtils.distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -51,7 +51,7 @@ public class CoordinateUtilsTest {
     @Test
     public void wgs2BD09() {
         double[] BD09 = CoordinateUtils.wgs84ToBd09(locationWGS84[0], locationWGS84[1]);
-        double distance = distance(locationBD09[0], locationBD09[1], BD09[0], BD09[1]);
+        double distance = CoordinateUtils.distance(locationBD09[0], locationBD09[1], BD09[0], BD09[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -59,7 +59,7 @@ public class CoordinateUtilsTest {
     @Test
     public void wgs2GCJ() {
         double[] GCJ02 = CoordinateUtils.wgs84ToGcj02(locationWGS84[0], locationWGS84[1]);
-        double distance = distance(locationGCJ02[0], locationGCJ02[1], GCJ02[0], GCJ02[1]);
+        double distance = CoordinateUtils.distance(locationGCJ02[0], locationGCJ02[1], GCJ02[0], GCJ02[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
     }
@@ -67,21 +67,8 @@ public class CoordinateUtilsTest {
     @Test
     public void gcj2WGSExactly() {
         double[] WGS84 = CoordinateUtils.gcj02ToWGS84(locationGCJ02[0], locationGCJ02[1]);
-        double distance = distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
+        double distance = CoordinateUtils.distance(locationWGS84[0], locationWGS84[1], WGS84[0], WGS84[1]);
         System.out.println("distance: " + distance);
         Assert.assertTrue(distance < 10);
-    }
-
-    private static double distance(double lngA, double latA, double lngB, double latB) {
-        int earthR = 6371000;
-        double x = Math.cos(latA * PI / 180) * Math.cos(latB * PI / 180) * Math.cos((lngA - lngB) * PI / 180);
-        double y = Math.sin(latA * PI / 180) * Math.sin(latB * PI / 180);
-        double s = x + y;
-        if (s > 1)
-            s = 1;
-        if (s < -1)
-            s = -1;
-        double alpha = Math.acos(s);
-        return alpha * earthR;
     }
 }
