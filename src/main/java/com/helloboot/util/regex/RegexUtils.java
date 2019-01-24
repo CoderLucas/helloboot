@@ -285,15 +285,4 @@ public class RegexUtils {
         }
         return Pattern.compile(regex).matcher(input).replaceAll(replacement);
     }
-
-    /**
-     * Return whether input matches regex of postal code.
-     *
-     * @param input The input.
-     * @return {@code true}: yes<br>{@code false}: no
-     *
-     */
-    public static boolean isPostalCode(final CharSequence input) {
-        return isMatch(RegexConstants.REGEX_CHINA_POSTAL_CODE, input);
-    }
 }
