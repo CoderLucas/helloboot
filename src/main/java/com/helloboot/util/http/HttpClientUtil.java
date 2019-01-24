@@ -1,7 +1,6 @@
 package com.helloboot.util.http;
 
 
-import com.helloboot.util.io.FileUtil;
 import com.helloboot.util.web.WebUtil;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -96,17 +95,17 @@ public final class HttpClientUtil {
                 .get());
     }
 
-    public static File get2File(String url, File outFile) {
-        HttpConfig config = HttpConfig.custom()
-                .url(url)
-                .get();
-        try {
-            return fmt2File(executeByThrowable(config), outFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public static File get2File(String url, File outFile) {
+//        HttpConfig config = HttpConfig.custom()
+//                .url(url)
+//                .get();
+//        try {
+//            return fmt2File(executeByThrowable(config), outFile);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     /**
      * 以Post方式，请求资源或服务
@@ -496,16 +495,15 @@ public final class HttpClientUtil {
         }
         return input;
     }
-
-    public static File fmt2File(HttpResponse resp, File outFile) {
-        try {
-            byte[] byteArray = EntityUtils.toByteArray(resp.getEntity());
-            FileUtil.writeToFile(byteArray, outFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return outFile;
-    }
+//
+//    public static File fmt2File(HttpResponse resp, File outFile) {
+//        try {
+//            byte[] byteArray = EntityUtils.toByteArray(resp.getEntity());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return outFile;
+//    }
 
     /**
      * 尝试关闭response
