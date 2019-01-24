@@ -28,6 +28,39 @@ public final class EncryptUtils {
     ///////////////////////////////////////////////////////////////////////////
 
     /**
+     * Return the hex string of MD2 encryption.
+     *
+     * @param data The data.
+     * @return the hex string of MD2 encryption
+     */
+    public static String encryptMD2ToString(final String data) {
+        if (data == null || data.length() == 0) {
+            return "";
+        }
+        return encryptMD2ToString(data.getBytes());
+    }
+
+    /**
+     * Return the hex string of MD2 encryption.
+     *
+     * @param data The data.
+     * @return the hex string of MD2 encryption
+     */
+    public static String encryptMD2ToString(final byte[] data) {
+        return bytes2HexString(encryptMD2(data));
+    }
+
+    /**
+     * Return the bytes of MD2 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of MD2 encryption
+     */
+    public static byte[] encryptMD2(final byte[] data) {
+        return hashTemplate(data, "MD2");
+    }
+
+    /**
      * Return the hex string of MD5 encryption.
      *
      * @param data The data.
@@ -232,7 +265,7 @@ public final class EncryptUtils {
      * @return the bytes of SHA224 encryption
      */
     public static byte[] encryptSHA224(final byte[] data) {
-        return hashTemplate(data, "SHA224");
+        return hashTemplate(data, "SHA-224");
     }
 
     /**
