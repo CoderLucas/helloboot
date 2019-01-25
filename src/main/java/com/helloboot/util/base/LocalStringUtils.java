@@ -4,9 +4,9 @@ package com.helloboot.util.base;
  * @author lujianhao
  * @date 2019/1/22
  */
-public class StringUtils {
-    private StringUtils() {
-        throw new UnsupportedOperationException("u can't instantiate StringUtils...");
+public class LocalStringUtils {
+    private LocalStringUtils() {
+        throw new UnsupportedOperationException("u can't instantiate LocalStringUtils...");
     }
 
     /**
