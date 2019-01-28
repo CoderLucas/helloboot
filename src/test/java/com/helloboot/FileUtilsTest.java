@@ -1,6 +1,7 @@
 package com.helloboot;
 
 import com.helloboot.util.file.FileUtils;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -34,6 +35,13 @@ public class FileUtilsTest {
         }
     };
 
+    @Before
+    public void setUp() {
+        FileUtils.createOrExistsFile(PATH_FILE + "UTF8.txt");
+        FileUtils.createOrExistsFile(PATH_FILE + "GBK.txt");
+        FileUtils.createOrExistsFile(PATH_FILE + "Unicode.txt");
+        FileUtils.createOrExistsFile(PATH_FILE + "UTF16BE.txt");
+    }
 
     @Test
     public void getFileByPath() {
@@ -171,7 +179,7 @@ public class FileUtilsTest {
 
     @Test
     public void getFileMD5ToString() {
-        assertEquals("249D3E76851DCC56C945994DE9DAC406", FileUtils.getFileMD5ToString(PATH_FILE + "UTF8.txt"));
+        assertEquals("7BE72B004C364C6467A0FDEA3847BEBD", FileUtils.getFileMD5ToString(PATH_FILE + "UTF8.txt"));
     }
 
     @Test
