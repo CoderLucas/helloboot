@@ -1,17 +1,16 @@
 package com.helloboot.util.base;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * @author lujianhao
  * @date 2018/12/6
  */
-/**check*/
-public class CharacterUtil {
+public class CharacterUtils {
+
     /**
-     * 判断一个字符是否emoji表情字符
+     * Determine if the character is emoji
      *
-     * @param ch 待检测的字符
+     * @param ch the character
+     * @return the boolean result
      */
     public static boolean isEmoji(char ch) {
         return !((ch == 0x0)
@@ -23,10 +22,10 @@ public class CharacterUtil {
     }
 
     /**
-     * 限定非 emoji 的范围判断是否是 emoji 表情
+     * Determine if the character is not emoji
      *
-     * @param ch 待检测的字符
-     * @return
+     * @param ch the character
+     * @return the boolean result
      */
     public static boolean isNotEmoji(char ch) {
         boolean isLatin = ch >= 0x0020 && ch <= 0x007F;   // 基本拉丁文（字母、数字、基本符号）
@@ -35,18 +34,17 @@ public class CharacterUtil {
     }
 
     /**
-     * 判断一个字符串中是否包含emoji表情字符
+     * Determine if the string contains emoji
      *
-     * @param s 待检测的字符串
-     * @return
+     * @param input the character
+     * @return the boolean result
      */
-    public static boolean containEmoji(String s) {
-        if (StringUtils.isEmpty(s)) {
+    public static boolean containEmoji(CharSequence input) {
+        if (input == null || input.length() == 0) {
             return false;
         }
-        StringBuilder builder = new StringBuilder(s);
-        for (int i = 0; i < builder.length(); i++) {
-            if (isEmoji(builder.charAt(i))) {
+        for (int i = 0; i < input.length(); i++) {
+            if (isEmoji(input.charAt(i))) {
                 return true;
             }
         }
@@ -54,19 +52,18 @@ public class CharacterUtil {
     }
 
     /**
-     * 清除一个字符串中的emoji表情字符
+     * Clear emoji in the string
      *
-     * @param s 待检测的字符串
-     * @return
+     * @param input the character
+     * @return the string after clean emoji
      */
-    public static String cleanEmoji(String s) {
-        if (StringUtils.isEmpty(s)) {
-            return s;
+    public static String cleanEmoji(CharSequence input) {
+        if (input == null || input.length() == 0) {
+            return String.valueOf(input);
         }
-        StringBuilder builder = new StringBuilder(s);
         StringBuilder newBuilder = new StringBuilder();
-        for (int i = 0; i < builder.length(); i++) {
-            char ch = builder.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
             if (isNotEmoji(ch)) {
                 newBuilder.append(ch);
             }
