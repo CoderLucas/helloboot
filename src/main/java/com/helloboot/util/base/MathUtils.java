@@ -10,12 +10,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author lujianhao
  * @date 2018/12/6
  */
-/**check*/
-public class MathUtil {
+public class MathUtils {
     private static final String ALLCHAR
             = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String LETTERCHAR
-            = "abcdefghijkllmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String NUMBERCHAR
             = "0123456789";
     /**
@@ -151,26 +150,6 @@ public class MathUtil {
     }
 
     /**
-     * 每次生成的len位数都不相同.
-     *
-     * @param param
-     * @return 定长的数字
-     */
-    public static int getNotSimple(int[] param, int len) {
-        for (int i = param.length; i > 1; i--) {
-            int index = getRandom().nextInt(i);
-            int tmp = param[index];
-            param[index] = param[i - 1];
-            param[i - 1] = tmp;
-        }
-        int result = 0;
-        for (int i = 0; i < len; i++) {
-            result = result * 10 + param[i];
-        }
-        return result;
-    }
-
-    /**
      * 从指定的数组中随机数组中的某个元素.
      *
      * @param param
@@ -188,8 +167,8 @@ public class MathUtil {
      * @param multiplication
      * @return
      */
-    private static String strMultiplication(String str, int multiplication) {
-        StringBuffer buffer = new StringBuffer();
+    public static String strMultiplication(String str, int multiplication) {
+        StringBuilder buffer = new StringBuilder();
         for (int i = 0; i < multiplication; i++) {
             buffer.append(str);
         }

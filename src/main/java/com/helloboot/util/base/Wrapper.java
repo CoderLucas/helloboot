@@ -4,7 +4,6 @@ package com.helloboot.util.base;
  * @author lujianhao
  * @date 2018/12/5
  */
-/**check*/
 public class Wrapper<T> {
     private T value;
 
