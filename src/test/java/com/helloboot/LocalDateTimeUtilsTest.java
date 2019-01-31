@@ -94,4 +94,22 @@ public class LocalDateTimeUtilsTest {
         System.out.println(LocalDateTimeUtils.getDateStart(LocalDateTime.now()));
         System.out.println(LocalDateTimeUtils.getDateEnd(LocalDateTime.now()));
     }
+
+    @Test
+    public void chineseZodiac() {
+        System.out.println(LocalDateTimeUtils.getChineseZodiac(timeStr));
+        System.out.println(LocalDateTimeUtils.getChineseZodiac(timeStr, DATE_FORMAT_PATTERN_DEFAULT));
+        System.out.println(LocalDateTimeUtils.getChineseZodiac(dateTime));
+        System.out.println(LocalDateTimeUtils.getChineseZodiac(timestamp));
+        System.out.println(LocalDateTimeUtils.getChineseZodiac(2019));
+    }
+
+    @Test
+    public void zodiac() {
+        System.out.println(LocalDateTimeUtils.getZodiac(timeStr));
+        System.out.println(LocalDateTimeUtils.getZodiac(timeStr, DATE_FORMAT_PATTERN_DEFAULT));
+        System.out.println(LocalDateTimeUtils.getZodiac(dateTime));
+        System.out.println(LocalDateTimeUtils.getZodiac(timestamp));
+        System.out.println(LocalDateTimeUtils.getZodiac(1,1));
+    }
 }
