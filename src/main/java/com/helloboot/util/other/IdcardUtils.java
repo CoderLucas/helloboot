@@ -15,6 +15,10 @@ import java.util.Map;
  * @date 2019/2/11
  */
 public final class IdcardUtils {
+    private IdcardUtils() {
+        throw new UnsupportedOperationException("You can't instantiate IdcardUtils...");
+    }
+
     /**
      * 中国公民身份证号码最小长度。
      */
