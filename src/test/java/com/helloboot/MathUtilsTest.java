@@ -25,4 +25,27 @@ public class MathUtilsTest {
         System.out.println(MathUtils.strMultiplication("abcd", 2));
         System.out.println(MathUtils.uuid());
     }
+
+    public static ThreadLocalExt t1 = new ThreadLocalExt();
+
+
+    static public class ThreadLocalExt extends ThreadLocal {
+        @Override
+        protected Object initialValue() {
+            return "我是默认值 第一次get不再为null";
+        }
+    }
+
+    @Test
+    public void test() {
+
+        if (t1.get() == null) {
+            System.out.println("从未放过值");
+            t1.set("我的值");
+        }
+        System.out.println(t1.get());
+        System.out.println(t1.get());
+
+        }
+
 }
