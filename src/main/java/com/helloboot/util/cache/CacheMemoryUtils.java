@@ -53,7 +53,7 @@ public class CacheMemoryUtils {
      * @param <T> the type of cache
      * @return the value of cache
      */
-    public <T> T get(@NonNull final String key) {
+    public static <T> T get(@NonNull final String key) {
         return get(key, null);
     }
 
@@ -65,7 +65,7 @@ public class CacheMemoryUtils {
      * @param <T>          the type of cache
      * @return the value of cache
      */
-    public <T> T get(@NonNull final String key, final T defaultValue) {
+    public static <T> T get(@NonNull final String key, final T defaultValue) {
         CacheValue val = CACHE_MAP.get(key);
         if (val == null) {
             return defaultValue;
@@ -105,7 +105,8 @@ public class CacheMemoryUtils {
     public static void clearExpired() {
         for (Map.Entry<String, CacheValue> entry : CACHE_MAP.entrySet()) {
             String key = entry.getKey();
-            if (entry.getValue().dueTime < System.currentTimeMillis()) {
+            if (entry.getValue().dueTime != -1
+                    && entry.getValue().dueTime < System.currentTimeMillis()) {
                 CACHE_MAP.remove(key);
             }
         }
