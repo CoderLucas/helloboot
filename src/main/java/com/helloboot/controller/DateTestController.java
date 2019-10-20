@@ -1,7 +1,7 @@
 package com.helloboot.controller;
 
-import com.helloboot.dao.DateTestRepository;
-import com.helloboot.domain.DateTest;
+import com.helloboot.model.DateTestDao;
+import com.helloboot.model.DateTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ import java.time.LocalTime;
 @RequestMapping("/date")
 public class DateTestController {
     @Autowired
-    private DateTestRepository dateTestRepository;
+    private DateTestDao dateTestDao;
 
     @GetMapping("/get")
     public String post() {
@@ -28,7 +28,7 @@ public class DateTestController {
         dateTest.setTime(LocalTime.now());
         dateTest.setTimestamp(LocalDateTime.now());
         dateTest.setDatetime(LocalDateTime.now());
-        dateTestRepository.save(dateTest);
+        dateTestDao.save(dateTest);
         return "success";
     }
 }

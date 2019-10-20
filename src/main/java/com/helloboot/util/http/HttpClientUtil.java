@@ -3,6 +3,7 @@ package com.helloboot.util.http;
 
 import com.helloboot.util.web.WebUtil;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -325,7 +326,7 @@ public final class HttpClientUtil {
      * @param
      * @return
      */
-    private static HttpResponse executeByThrowable(HttpConfig config) throws Exception {
+    public static HttpResponse executeByThrowable(HttpConfig config) throws Exception {
         create(config);
         HttpResponse response = null;
 
@@ -340,7 +341,6 @@ public final class HttpClientUtil {
                 request.addHeader(key, String.valueOf(headers.get(key)));
             }
         }
-        request.addHeader("User-Agent", "Mozilla/5.0 (compatible; dxyask; +http://www.dxy.com/search.html)");
 
         if (HttpEntityEnclosingRequestBase.class.isAssignableFrom(request.getClass())) {
             List<NameValuePair> nvps = new ArrayList<>();
@@ -464,6 +464,35 @@ public final class HttpClientUtil {
             close(resp);
         }
         return body;
+    }
+
+
+    public static String getEntityStringNoClose(HttpResponse resp) {
+        String body = "";
+        try {
+            if (resp.getEntity() != null) {
+                // 按指定编码转换结果实体为String类型
+                body = EntityUtils.toString(resp.getEntity(), "UTF-8");
+            } else {
+                //有可能是head请求
+                body = resp.getStatusLine().toString();
+            }
+            EntityUtils.consume(resp.getEntity());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return body;
+    }
+
+    public static Map<String, String> getHeaderNoClose(HttpResponse resp) {
+        Map<String, String> headerMap = new HashMap<>();
+        Header[] headers = resp.getAllHeaders();
+        int i = 0;
+        while (i < headers.length) {
+            headerMap.put(headers[i].getName(), headers[i].getValue());
+            i++;
+        }
+        return headerMap;
     }
 
     /**

@@ -19,7 +19,7 @@ spring:
     password: Lu123456@
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
-###################以下为druid增加的配置###########################
+#######################以下为druid增加的配置########################
     type: com.alibaba.druid.pool.DruidDataSource
 # 下面为连接池的补充设置，应用到上面所有数据源中
 # 初始化大小，最小，最大\
@@ -45,11 +45,13 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 # 合并多个DruidDataSource的监控数据
 #spring.datasource.useGlobalDataSourceStat=true
-###############以上为配置druid添加的配置########################################
+###################以上为配置druid添加的配置########################
 
-jpa:
+###################以下为jpa增加的配置###########################
+  jpa:
     # 配置 DBMS 类型
     database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     # 配置是否将执行的 SQL 输出到日志
     show-sql: true
     properties:
@@ -57,3 +59,62 @@ jpa:
         hbm2ddl:
           # 配置开启自动更新表结构
           auto: update
+###################以上为配置jpa添加的配置########################
+
+###################以下为redis增加的配置###########################
+  redis:
+    # Redis数据库索引（默认为0）
+    database: 0
+    # Redis服务器地址
+    host: localhost
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    lettuce:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        # 连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认 0
+        min-idle: 0
+###################以上为配置redis添加的配置########################
+
+###################以下为thymeleaf增加的配置###########################
+  # thymeleaf的配置是为了去掉html的校验
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+###################以上为配置thymeleaf添加的配置########################
+
+###################以下为servlet增加的配置###########################
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+###################以上为配置servlet添加的配置########################
+
+###################以下为Actuator 监控增加的配置###########################
+info:
+  app:
+    name: helloboot-actuator
+    version: 1.0.0
+    test: test
+management:
+  endpoints:
+    web:
+      # 打开所有的监控点
+      exposure:
+        include: '*'
+#       代表启用单独的url地址来监控 Spring Boot 应用，为了安全一般都启用独立的端口来访问后端的监控信息
+#      base-path: /manage
+  endpoint:
+    health:
+      show-details: always
+    # 启用接口关闭 Spring Boot
+    shutdown:
+      enabled: true
+###################以上为配置Actuator 监控添加的配置########################

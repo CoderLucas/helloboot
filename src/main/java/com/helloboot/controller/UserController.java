@@ -1,9 +1,14 @@
 package com.helloboot.controller;
 
 
-import com.helloboot.dao.UserRepository;
-import com.helloboot.domain.User;
+import com.helloboot.model.UserDao;
+import com.helloboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +31,11 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @GetMapping("/id")
     public Optional<User> test(@RequestParam(value = "id")Long id) {
-        return userRepository.findById(id);
+        return userDao.findById(id);
     }
 
     @RequestMapping("/test")
@@ -75,6 +80,21 @@ public class UserController {
         }
 
         return map;
+    }
+
+    @RequestMapping("/getUser")
+    @Cacheable(value="user-key")
+    public User getUser() {
+        User user = new User(1L,"123","123","123",1);
+        System.out.println("若下面没出现“无缓存的时候调用”字样且能打印出数据表示测试成功");
+        return user;
+    }
+
+    @RequestMapping("/list")
+    public Page list() {
+        Sort sort = new Sort(Sort.Direction.DESC, "id");
+        Pageable pageable = new PageRequest(1, 10, sort);
+        return userDao.findAll(pageable);
     }
 }
 

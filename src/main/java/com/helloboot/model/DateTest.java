@@ -1,6 +1,9 @@
-package com.helloboot.domain;
+package com.helloboot.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +15,9 @@ import java.time.LocalTime;
  * @date 2018/12/16
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "date_test")
 public class DateTest {
