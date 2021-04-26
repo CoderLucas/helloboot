@@ -89,7 +89,7 @@
 			<!-- The Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more. -->
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.0.1</version>
+			<version>2.7</version>
 		</dependency>
 
 		<dependency>
